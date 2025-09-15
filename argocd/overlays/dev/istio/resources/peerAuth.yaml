@@ -1,0 +1,26 @@
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: peerauth
+  namespace: "knative-serving"
+spec:
+  mtls:
+    mode: PERMISSIVE
+---
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: peerauth
+  namespace: "knative-eventing"
+spec:
+  mtls:
+    mode: PERMISSIVE
+---
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: peerauth
+  namespace: "testservices"
+spec:
+  mtls:
+    mode: PERMISSIVE
