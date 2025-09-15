@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: argocd-gateway
+  namespace: argocd
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  # - hosts:
+  #   - 'argocd.eventhub.cloud.zeiss.com'
+  #   port:
+  #     name: http
+  #     number: 80
+  #     protocol: HTTP
+  - hosts:
+    - 'argocd.eventhub.cloud.zeiss.com'
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      credentialName: eventhub
+      mode: SIMPLE

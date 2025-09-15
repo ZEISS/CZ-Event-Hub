@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: bind-http-source
+  namespace: testservices
+spec:
+  subject:
+    apiVersion: serving.knative.dev/v1
+    kind: Service
+    name: custom-http-source
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: kafkabroker

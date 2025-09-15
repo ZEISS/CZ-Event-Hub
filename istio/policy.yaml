@@ -1,0 +1,92 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ingress-require-jwt
+  namespace: istio-system
+spec:
+  selector:
+      matchLabels:
+        istio: ingressgateway
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        requestPrincipals: ["*"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ingress-argocd
+  namespace: argocd
+spec:
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+       methods: ["GET"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: require-admin-role
+  namespace: testservices
+spec:
+  selector:
+    matchLabels:
+      app: custom-http-source
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+       methods: ["POST"]
+    when:
+    - key: request.auth.claims[roles]
+      values: ["Topic.Test.PoC"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-http-target
+  namespace: testservices
+spec:
+  selector:
+    matchLabels:
+      app: custom-http-target
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+       methods: ["POST"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-http-target-2
+  namespace: testservices
+spec:
+  selector:
+    matchLabels:
+      app: custom-http-target-2
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+       methods: ["POST"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allowlist-by-paths
+  namespace: testservices
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["knative-serving", "testservices"]
+  - to:
+    - operation:
+        paths:
+        - /metrics   # The path to collect metrics by system pod.
+        - /healthz   # The path to probe by system pod.
+    

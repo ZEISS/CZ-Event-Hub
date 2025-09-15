@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: custom-http-source
+  namespace: testservices
+spec:
+  template:
+    metadata:
+      labels:
+        app: custom-http-source
+    spec:
+      containers:
+        - image: ghcr.io/zeiss/eventhub/custom-http-service:2.0.0
+        #- image: dev.local/custom-http-service:1.0.0 #ghcr.io/zeiss/eventhub/custom-http-service:2.0.0
+          name: custom-http-source

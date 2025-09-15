@@ -1,0 +1,4 @@
+resources:
+  - resources/base.yaml
+  - resources/setup.yaml
+  

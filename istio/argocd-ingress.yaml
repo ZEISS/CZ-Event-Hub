@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: argocd-ingress
+  namespace: argocd
+spec:
+  gateways:
+  - argocd/argocd-gateway
+  hosts:
+  - argocd.eventhub.cloud.zeiss.com
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: argocd-server.argocd.svc.cluster.local
+        port:
+          number: 80

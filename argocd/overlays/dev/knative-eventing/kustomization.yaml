@@ -1,0 +1,5 @@
+resources:
+  - resources/eventing-core.yaml
+  - resources/eventing-kafka-broker.yaml
+  - resources/eventing-kafka-controller.yaml
+  

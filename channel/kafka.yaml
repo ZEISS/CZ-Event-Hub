@@ -1,0 +1,9 @@
+apiVersion: messaging.knative.dev/v1beta1
+kind: KafkaChannel
+metadata:
+  name: kafkachannel
+  namespace: knative-eventing
+spec:
+  numPartitions: 1
+  replicationFactor: 1
+  retentionDuration: PT168H

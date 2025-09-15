@@ -1,0 +1,27 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: ingress-jwt
+  namespace: istio-system
+spec:
+  selector:
+      matchLabels:
+        istio: ingressgateway
+  jwtRules:
+  - issuer: "https://sts.windows.net/82913d90-8716-4025-a8e8-4f8dfa42b719/"
+    jwksUri: "https://login.microsoftonline.com/82913d90-8716-4025-a8e8-4f8dfa42b719/discovery/v2.0/keys"
+    forwardOriginalToken: true
+---
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: ingress-jwt-service
+  namespace: testservices
+spec:
+  selector:
+      matchLabels:
+        app: custom-http-source
+  jwtRules:
+  - issuer: "https://sts.windows.net/82913d90-8716-4025-a8e8-4f8dfa42b719/"
+    jwksUri: "https://login.microsoftonline.com/82913d90-8716-4025-a8e8-4f8dfa42b719/discovery/v2.0/keys"
+    

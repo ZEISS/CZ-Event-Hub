@@ -1,0 +1,6 @@
+resources:
+  - resources/serving-core.yaml
+
+patchesStrategicMerge:
+  - patches/namespace.yaml
+  - patches/domain.yaml

@@ -1,0 +1,15 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: trigger
+  namespace: testservices
+spec:
+  broker: kafkabroker
+  filters:
+    - exact:
+        type: custom.source.event
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: custom-http-target
