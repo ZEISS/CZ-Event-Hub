@@ -2,4 +2,5 @@ resources:
   - resources/istio.yaml
   - resources/net-istio.yaml
   - resources/peerAuth.yaml
+  - resources/gateway.yaml
   
