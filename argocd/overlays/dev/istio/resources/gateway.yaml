@@ -14,11 +14,11 @@ spec:
       number: 80
       protocol: HTTP
   - hosts:
-        - '*.eventhub.cloud.zeiss.com'
-      port:
-        name: https
-        number: 443
-        protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: eventhub
+    - '*.eventhub.cloud.zeiss.com'
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: eventhub
