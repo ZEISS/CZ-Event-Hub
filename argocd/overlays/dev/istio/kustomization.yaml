@@ -3,6 +3,6 @@ resources:
   - resources/net-istio.yaml
   - resources/peerAuth.yaml
 
-patchesStrategicMerge:
+patches:
   - resources/gateway.yaml
   
