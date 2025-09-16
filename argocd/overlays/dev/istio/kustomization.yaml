@@ -2,4 +2,7 @@ resources:
   - resources/istio.yaml
   - resources/net-istio.yaml
   - resources/peerAuth.yaml
-  - resources/knative-ingress-gateway.yaml  
+  - resources/knative-ingress-gateway.yaml 
+
+patchesStrategicMerge:
+  - resources/gateway.yaml
