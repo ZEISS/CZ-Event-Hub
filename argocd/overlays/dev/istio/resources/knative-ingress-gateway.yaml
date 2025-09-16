@@ -7,12 +7,14 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-  # - hosts:
-  #   - '*'
-  #   port:
-  #     name: http
-  #     number: 80
-  #     protocol: HTTP
+  - hosts:
+    - '*'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
   - hosts:
     - '*.eventhub.cloud.zeiss.com'
     port:
